@@ -1,0 +1,9 @@
+# 依存関係を省略している
+#   同名のファイルが依存関係であるとする暗黙のルールがあるため省略できる。
+# http://www.ecoop.net/coop/translated/GNUMake3.77/make_toc.jp.html
+program.exe: MainWindow.o
+	g++ -Wall -std=c++11 -o program.exe program.o MainWindow.o `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+MainWindow.o:
+	g++ -Wall -std=c++11 -c MainWindow.cc `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+program.o:
+	g++ -Wall -std=c++11 -c program.cc `pkg-config gtkmm-3.0 --cflags --libs` -mwindows

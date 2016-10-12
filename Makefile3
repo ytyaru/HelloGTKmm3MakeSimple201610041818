@@ -1,0 +1,17 @@
+# 変数をもちいて重複を軽減した。
+# http://www.ecoop.net/coop/translated/GNUMake3.77/make_toc.jp.html
+# `make clean`でバイナリファイルを削除する。
+exe = program.exe
+objects = program.o \
+			MainWindow.o
+
+$(exe): $(objects)
+	g++ -Wall -std=c++11 -o $(exe) $(objects) `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+MainWindow.o:
+	g++ -Wall -std=c++11 -c MainWindow.cc `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+program.o:
+	g++ -Wall -std=c++11 -c program.cc `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+
+.PHONY : clean
+clean :
+	-rm $(exe) $(objects)

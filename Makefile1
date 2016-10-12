@@ -1,0 +1,7 @@
+# 依存関係をすべて書いている
+program.exe: program.o MainWindow.o
+	g++ -Wall -std=c++11 -o program.exe program.o MainWindow.o `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+MainWindow.o: MainWindow.cc MainWindow.h
+	g++ -Wall -std=c++11 -c MainWindow.cc `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
+program.o: program.cc
+	g++ -Wall -std=c++11 -c program.cc `pkg-config gtkmm-3.0 --cflags --libs` -mwindows
